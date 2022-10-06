@@ -7,7 +7,7 @@ const { Tag, Product, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const tagData = await Tag.findAll({
-      // JOIN with products, using the producttag through table
+      // JOIN with products, using the productTag through table
       include: [{ 
         model: Product, 
         through: ProductTag
@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-// find a single tag by its `id`
+// GET to find a single tag by its `id`
 router.get('/:id', async (req, res) => {
   try {
     const tagData = await Tag.findByPk(req.params.id, {
@@ -41,7 +41,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// post a new tag
+// POST a new tag
 router.post('/', async (req, res) => {
   try {
     const tagData = await Tag.create(req.body);
@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// update product data
+// UPDATE product data
 router.put('/:id', async (req, res) => {
   try {
     const updatedTag = await Tag.update(
@@ -71,7 +71,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// delete one tag by its id value
+// DELETE one tag by its id value
 router.delete('/:id', async (req, res) => {
   try {
     const tagData = await Tag.destroy({
